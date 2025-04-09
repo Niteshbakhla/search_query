@@ -18,7 +18,7 @@ export default function ClothingStore() {
   const [products, setProducts] = useState([]);
 
   const searchProducts = async (query, selectedCategory) => {
-    const { data } = await axios.get("http://localhost:3000/api/products", {
+    const { data } = await axios.get(`${import.meta.env.VITE_URL}/api/products`, {
       params: { search: query, category: selectedCategory }
     })
     if (document.startViewTransition) {
@@ -29,9 +29,6 @@ export default function ClothingStore() {
       // setProducts(data.products);
     }
   }
-
-
-
 
   const debounceSearch = useCallback(debounce(searchProducts, 600), [])
 
